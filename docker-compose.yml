@@ -1,0 +1,10 @@
+version: '2.2'
+
+services:
+  haproxy:
+    build:
+      context: './containers/haproxy'
+    environment:
+      - SVC_HOST=docker.for.mac.localhost
+    ports:
+      - "8001:8001"
