@@ -17,7 +17,7 @@ The `run.sh` script will start a local server on port 8000, HAProxy inside the D
 #### Requirements
 
 * `docker-compose`
-* `python2`
+* `node`
 
 #### Results
 

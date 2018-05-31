@@ -9,7 +9,7 @@ finish(){
 trap finish EXIT
 
 echo "Starting local HTTP server on port 8000"
-python2 -m SimpleHTTPServer 8000 &
+env PORT=8000 node app.js &
 HTTPPID=$!
 echo "Starting containers..."
 docker-compose up -d --build
