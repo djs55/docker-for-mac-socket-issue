@@ -3,7 +3,7 @@
 HTTPPID=""
 finish(){
   echo "Exiting."
-  kill $HTTPPID
+  kill $HTTPPID || echo HTTP server has already been shutdown
   docker-compose down
 }
 trap finish EXIT
