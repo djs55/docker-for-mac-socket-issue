@@ -8,7 +8,7 @@ finish(){
 }
 trap finish EXIT
 
-initial=$(lsof -i -P -n | grep com.dock | wc -l | sed 's/ //g')
+initial=$(lsof -i -P -n | grep com.dock | grep -v UDP | wc -l | sed 's/ //g')
 
 docker pull node:alpine
 
@@ -21,7 +21,7 @@ docker-compose up -d --build
 # the sockets leak about 10 per second
 sleep 5
 
-final=$(lsof -i -P -n | grep com.dock | wc -l | sed 's/ //g')
+final=$(lsof -i -P -n | grep com.dock | grep -v UDP | wc -l | sed 's/ //g')
 count=$(expr "${final}" - "${initial}")
 echo "At the beginning we consumed ${initial} fds. At the end we consumed ${final}."
 if [ "${count}" -gt 25 ]; then
